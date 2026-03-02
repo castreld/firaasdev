@@ -325,6 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
         '/projects_asset/siaga/8.jpg',
         '/projects_asset/siaga/9.jpg',
       ],
+      hudCallouts: {
+        slideIndex: 7, // image 8.jpg (0-indexed)
+        people: [
+          { name: 'Arkan', role: 'Electronics Engineer', linkedin: 'https://www.linkedin.com/in/arkan-ardiansyah-5a849b395/', x: 39, y: 28, direction: 'down' },
+          { name: 'Kitna', role: 'Initiator', linkedin: 'https://www.linkedin.com/in/kitna-mahardika-favian-77801729b/', x: 50, y: 34, direction: 'up' },
+          { name: 'Vriza', role: 'Network Engineer', linkedin: 'https://www.linkedin.com/in/vriza-hexandria-saputra-181544356/', x: 66, y: 34, direction: 'down' },
+        ],
+      },
     },
     {
       name: 'MindSpace',
@@ -521,9 +529,51 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    track.innerHTML = screenshots.map(src =>
-      `<img src="${src}" alt="Screenshot" loading="lazy"/>`
-    ).join('');
+    track.innerHTML = screenshots.map((src, i) => {
+      // Check if this slide has HUD callouts
+      if (project.hudCallouts && project.hudCallouts.slideIndex === i) {
+        const calloutsHTML = project.hudCallouts.people.map((person, pi) => `
+          <div class="hud-callout" style="--hud-x: ${person.x}%; --hud-y: ${person.y}%;" data-delay="${pi}" data-direction="${person.direction || 'down'}">
+            <div class="hud-anchor"></div>
+            <div class="hud-connector"></div>
+            <div class="hud-label">
+              <div class="hud-label-header">
+                <span class="hud-scan-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </span>
+                <span class="hud-name">${person.name}</span>
+              </div>
+              <span class="hud-role">${person.role}</span>
+              <a href="${person.linkedin}" target="_blank" rel="noopener" class="hud-linkedin">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        `).join('');
+        return `<div class="carousel-slide carousel-slide-hud" data-slide-idx="${i}">
+          <img src="${src}" alt="Screenshot" loading="lazy"/>
+          <button class="hud-toggle" aria-label="Toggle HUD" title="Toggle HUD">
+            <svg class="hud-toggle-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="hud-toggle-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+            <span>HUD</span>
+          </button>
+          <div class="hud-overlay">${calloutsHTML}</div>
+        </div>`;
+      }
+      return `<div class="carousel-slide" data-slide-idx="${i}"><img src="${src}" alt="Screenshot" loading="lazy"/></div>`;
+    }).join('');
 
     dotsContainer.innerHTML = screenshots.map((_, i) =>
       `<div class="carousel-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></div>`
@@ -546,6 +596,19 @@ document.addEventListener('DOMContentLoaded', () => {
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
     dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+
+    // Toggle HUD callout animation on active slide
+    document.querySelectorAll('.carousel-slide-hud').forEach(slide => {
+      const slideIdx = Number(slide.dataset.slideIdx);
+      if (slideIdx === currentSlide) {
+        // Re-trigger animation by removing then adding class
+        slide.classList.remove('hud-active');
+        void slide.offsetWidth; // force reflow
+        slide.classList.add('hud-active');
+      } else {
+        slide.classList.remove('hud-active');
+      }
+    });
   }
 
   document.getElementById('carousel-prev').addEventListener('click', () => goToSlide(currentSlide - 1));
@@ -553,6 +616,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('carousel-dots').addEventListener('click', (e) => {
     const dot = e.target.closest('.carousel-dot');
     if (dot) goToSlide(Number(dot.dataset.idx));
+  });
+
+  // HUD toggle button
+  document.getElementById('carousel-track').addEventListener('click', (e) => {
+    const toggleBtn = e.target.closest('.hud-toggle');
+    if (!toggleBtn) return;
+    const slide = toggleBtn.closest('.carousel-slide-hud');
+    if (!slide) return;
+    slide.classList.toggle('hud-hidden');
+    const isHidden = slide.classList.contains('hud-hidden');
+    toggleBtn.querySelector('.hud-toggle-on').style.display = isHidden ? 'none' : 'block';
+    toggleBtn.querySelector('.hud-toggle-off').style.display = isHidden ? 'block' : 'none';
   });
 
   let savedScrollY = 0;
