@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firaas Raihansyah Rizqullah — Full-Stack & Mobile Developer</title>
+  <meta name="description"
+    content="Portfolio of Firaas Raihansyah Rizqullah — All-in-One Developer specializing in Mobile, Full-Stack, Desktop, and DevOps engineering." />
+  <meta name="theme-color" content="#050510" />
+  <meta property="og:title" content="Firaas Raihansyah Rizqullah — Developer Portfolio" />
+  <meta property="og:description" content="All-in-One Developer // Mobile • DevOps • Full-Stack • Desktop" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-DmiF3zel.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B8WwgzR4.css">
+</head>
+
+<body>
+  <!-- Custom Cursor (desktop only) -->
+  <div id="custom-cursor">
+    <div class="cursor-dot"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">FR</a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-section="about">About</a>
+      <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+      <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+    </div>
+    <a href="https://github.com/castreld" target="_blank" rel="noopener" class="nav-cta">
+      <span class="nav-cta-dot"></span> GitHub
+    </a>
+  </nav>
+
+  <!-- Mobile Nav Toggle -->
+  <button id="nav-toggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <canvas id="splash-webgl-canvas"></canvas>
+    <div class="splash-content">
+      <div class="splash-logo">FR</div>
+      <div class="splash-text">
+        <span id="splash-typewriter"></span><span class="cursor-blink">_</span>
+      </div>
+      <div class="splash-progress">
+        <div class="splash-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WebGL Background Layer -->
+  <canvas id="global-webgl-canvas"></canvas>
+
+  <!-- Main Content -->
+  <main id="app">
+
+    <!-- 1. HERO -->
+    <section id="hero" class="section">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-content">
+        <div class="hero-badge reveal-up">All-in-One Developer</div>
+        <h1 class="hero-name split-text" data-text="Firaas Raihansyah Rizqullah">Firaas Raihansyah Rizqullah</h1>
+        <p class="hero-tagline split-text">Mobile • Full-Stack • Desktop • DevOps</p>
+        <div class="hero-terminal">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">firaas@portfolio:~</span>
+          </div>
+          <div class="terminal-body">
+            <span class="terminal-prompt">$</span>
+            <span id="typewriter"></span><span class="cursor-blink">_</span>
+          </div>
+        </div>
+        <div class="hero-actions reveal-up">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-scroll-hint reveal-up">
+        <div class="scroll-line"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <span class="section-tag reveal-up">// 01</span>
+        <h2 class="section-title split-text">About Me</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal-up">
+          <p>I'm a versatile developer who thrives at the intersection of <strong>mobile engineering</strong>,
+            <strong>full-stack architecture</strong>, and <strong>systems-level thinking</strong>. From crafting
+            pixel-perfect Flutter UIs to orchestrating CI/CD pipelines on Linux servers, I build robust digital
+            ecosystems that scale across Windows, Linux, macOS, Android, and iOS.
+          </p>
+          <p>My philosophy is simple: <em>ship fast, iterate relentlessly, and never compromise on user experience.</em>
+            Whether it's an IoT monitoring system or an AI-powered content platform, I approach every project with the
+            same obsessive attention to detail.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card reveal-up">
+            <span class="stat-number" data-count="5">0</span>
+            <span class="stat-label">Production Apps</span>
+          </div>
+          <div class="stat-card reveal-up">
+            <span class="stat-number" data-count="28">0</span>
+            <span class="stat-label">K+ Installs</span>
+          </div>
+          <div class="stat-card reveal-up">
+            <span class="stat-number" data-count="4">0</span>
+            <span class="stat-label">Platforms</span>
+          </div>
+          <div class="stat-card reveal-up">
+            <span class="stat-number" data-count="3">0</span>
+            <span class="stat-label">Years Building</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <span class="section-tag reveal-up">// 02</span>
+        <h2 class="section-title split-text">Core Matrix</h2>
+      </div>
+      <div class="skills-grid" id="skills-grid">
+        <!-- Populated via JS -->
+      </div>
+    </section>
+
+    <!-- 4. PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <span class="section-tag reveal-up">// 03</span>
+        <h2 class="section-title split-text">Tactical Deployments</h2>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <!-- Populated via JS -->
+      </div>
+    </section>
+
+    <!-- 5. CONTACT / FOOTER -->
+    <section id="contact" class="section">
+      <canvas id="footer-canvas"></canvas>
+      <div class="section-header">
+        <span class="section-tag reveal-up">// 04</span>
+        <h2 class="section-title split-text">Establish Connection</h2>
+      </div>
+      <div class="contact-terminal reveal-up">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">connections.sh</span>
+        </div>
+        <div class="contact-links">
+          <a href="https://github.com/castreld" target="_blank" rel="noopener" class="contact-line">
+            <span class="contact-prompt">❯</span>
+            <span class="contact-cmd">open</span>
+            <span class="contact-target">--github</span>
+            <span class="contact-arrow">→</span>
+            <span class="contact-value">castreld</span>
+          </a>
+          <a href="https://www.linkedin.com/in/firaas-rizqullah-909aa1331/" target="_blank" rel="noopener"
+            class="contact-line">
+            <span class="contact-prompt">❯</span>
+            <span class="contact-cmd">open</span>
+            <span class="contact-target">--linkedin</span>
+            <span class="contact-arrow">→</span>
+            <span class="contact-value">firaas-rizqullah</span>
+          </a>
+          <a href="mailto:hulukotak@gmail.com" class="contact-line">
+            <span class="contact-prompt">❯</span>
+            <span class="contact-cmd">send</span>
+            <span class="contact-target">--email</span>
+            <span class="contact-arrow">→</span>
+            <span class="contact-value">hulukotak@gmail.com</span>
+          </a>
+          <a href="https://instagram.com/castreld" target="_blank" rel="noopener" class="contact-line">
+            <span class="contact-prompt">❯</span>
+            <span class="contact-cmd">open</span>
+            <span class="contact-target">--instagram</span>
+            <span class="contact-arrow">→</span>
+            <span class="contact-value">@castreld</span>
+          </a>
+        </div>
+      </div>
+      <footer class="site-footer reveal-up">
+        <p>Designed & built by <strong>Firaas Raihansyah Rizqullah</strong></p>
+        <p class="footer-year">© <span id="current-year"></span></p>
+      </footer>
+    </section>
+
+  </main>
+  <!-- Warp Transition Overlay -->
+  <div id="warp-overlay">
+    <canvas id="warp-canvas"></canvas>
+  </div>
+
+  <!-- Project Showcase Page -->
+  <div id="showcase" class="showcase-hidden">
+    <canvas id="showcase-env-canvas"></canvas>
+    <button id="showcase-back" aria-label="Go back">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      <span>Back</span>
+    </button>
+    <div class="showcase-content">
+      <!-- Left Column: Info -->
+      <div class="showcase-left">
+        <div class="showcase-header">
+          <span class="showcase-tag" id="showcase-tag"></span>
+          <h1 class="showcase-title" id="showcase-title"></h1>
+        </div>
+        <p class="showcase-desc" id="showcase-desc"></p>
+        <div class="showcase-techs" id="showcase-techs"></div>
+        <ul class="showcase-highlights" id="showcase-highlights"></ul>
+      </div>
+      <!-- Right Column: Screenshots Carousel -->
+      <div class="showcase-right">
+        <div class="showcase-carousel">
+          <div class="carousel-viewport" id="carousel-viewport">
+            <div class="carousel-track" id="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="carousel-prev" aria-label="Previous">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <button class="carousel-btn" id="carousel-next" aria-label="Next">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
